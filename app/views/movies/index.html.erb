@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+      <%= form_with url: movies_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a movie"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+      <div id="movies">
+        <% if !@results.nil? %>
+          <% @results.each do |result| %>
+            <h4><%= result.searchable.title %></h4>
+            <p><%= result.searchable.year %></p>
+          <% end %>
+        <% else %>
+          <% @all_shows.each do |show| %>
+            <h4><%= show.title %></h4>
+            <p><%= show.year %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
