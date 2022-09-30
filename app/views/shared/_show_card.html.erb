@@ -2,6 +2,9 @@
   <div class="card-left">
     <h4><%= show.title %></h4>
     <p><%= show.year %></p>
+    <% show.show_themes.each do |show_theme| %>
+      <p><%= show_theme.theme.name %></p>
+    <% end %>
   </div>
   <div class="card-right">
     <p><%= show.synopsis %></p>

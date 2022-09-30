@@ -9,10 +9,20 @@
         %>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
+      <div class="dropdown d-flex justify-content-end">
+        <button class="btn btn-secondary dropdown-toggle rounded-4" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="height=40px; padding:10px">
+          Filter show theme
+        </button>
+        <ul class="dropdown-menu">
+          <% Theme.all.order(:name).each do |theme| %>
+            <li><%= link_to theme.name, movies_path(theme: theme.name), class:"dropdown-item" %></li>
+          <% end %>
+        </ul>
+      </div>
       <div id="movies">
         <% if !@results.nil? %>
           <% @results.each do |result| %>
-            <%= render "shared/show_card", show: result.searchable %>
+            <%= render "shared/show_card", show: result %>
           <% end %>
         <% else %>
           <% @all_shows.each do |show| %>
