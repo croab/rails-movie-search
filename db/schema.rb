@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_29_130415) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_30_103206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_130415) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
+  end
+
+  create_table "show_themes", force: :cascade do |t|
+    t.string "show_type"
+    t.bigint "show_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["show_type", "show_id"], name: "index_show_themes_on_show"
+    t.index ["theme_id"], name: "index_show_themes_on_theme_id"
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tv_shows", force: :cascade do |t|

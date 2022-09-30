@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
       PgSearch::Multisearch.rebuild(TvShow)
       @results = PgSearch.multisearch(params[:query])
     else
-      @all_shows = (Movie.all + TvShow.all).shuffle.order(title: :desc)
+      @all_shows = (Movie.all + TvShow.all).shuffle
     end
   end
 end

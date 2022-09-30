@@ -12,13 +12,11 @@
       <div id="movies">
         <% if !@results.nil? %>
           <% @results.each do |result| %>
-            <h4><%= result.searchable.title %></h4>
-            <p><%= result.searchable.year %></p>
+            <%= render "shared/show_card", show: result.searchable %>
           <% end %>
         <% else %>
           <% @all_shows.each do |show| %>
-            <h4><%= show.title %></h4>
-            <p><%= show.year %></p>
+            <%= render "shared/show_card", show: show %>
           <% end %>
         <% end %>
       </div>
