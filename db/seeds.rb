@@ -25,6 +25,8 @@ puts "Clearing DB"
 Movie.destroy_all
 Director.destroy_all
 TvShow.destroy_all
+ShowTheme.destroy_all
+Theme.destroy_all
 
 puts "Creating directors..."
 directors = {}  # slug => Director
@@ -42,6 +44,27 @@ end
 
 puts "Creating tv shows..."
 75.times do
-  tvshow = TvShow.new(title: Faker::Book.title, year: rand(1960..2022), synopsis: Faker::TvShows::DrWho.quote)
+  TvShow.create!(title: Faker::Book.title, year: rand(1960..2022), synopsis: Faker::TvShows::DrWho.quote)
 end
 puts "Finished!"
+
+puts "Creating themes..."
+themes = [
+  "Funky",
+  "Cool",
+  "Thrilling",
+  "Exciting",
+  "Mysterious",
+  "Outdoors",
+  "Indoors"
+]
+themes.each do |theme|
+  Theme.create!(name: theme)
+end
+
+puts "Creating several themes for random shows..."
+shows = Movie.all + TvShow.all
+200.times do
+  show = shows.sample
+  new_show_theme = ShowTheme.create!(show: show, theme: Theme.all.sample)
+end
