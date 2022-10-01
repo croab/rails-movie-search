@@ -24,10 +24,6 @@
           <% @results.each do |result| %>
             <%= render "shared/show_card", show: result %>
           <% end %>
-        <% else %>
-          <% @all_shows.each do |show| %>
-            <%= render "shared/show_card", show: show %>
-          <% end %>
         <% end %>
       </div>
     </div>
